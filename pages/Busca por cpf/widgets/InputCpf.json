@@ -3,7 +3,7 @@
   "animateLoading": true,
   "autoFocus": false,
   "borderRadius": "0.375rem",
-  "bottomRow": 8,
+  "bottomRow": 9,
   "boxShadow": "none",
   "defaultText": "",
   "dynamicBindingPathList": [
@@ -12,6 +12,11 @@
     }
   ],
   "dynamicHeight": "FIXED",
+  "dynamicPropertyPathList": [
+    {
+      "key": "isRequired"
+    }
+  ],
   "dynamicTriggerPathList": [
     {
       "key": "onSubmit"
@@ -24,7 +29,7 @@
   "inputType": "TEXT",
   "isDisabled": false,
   "isLoading": false,
-  "isRequired": false,
+  "isRequired": "",
   "isVisible": true,
   "key": "kiwtpxwiiz",
   "label": "Digite Cpf do candidato",
@@ -33,7 +38,8 @@
   "labelStyle": "",
   "labelTextSize": "0.875rem",
   "labelWidth": 5,
-  "leftColumn": 25,
+  "leftColumn": 24,
+  "maxChars": "15",
   "maxDynamicHeight": 9000,
   "minDynamicHeight": 4,
   "minWidth": 450,
@@ -50,9 +56,9 @@
   "renderMode": "CANVAS",
   "resetOnSubmit": true,
   "responsiveBehavior": "fill",
-  "rightColumn": 39,
+  "rightColumn": 38,
   "showStepArrows": false,
-  "topRow": 1,
+  "topRow": 2,
   "type": "INPUT_WIDGET_V2",
   "version": 2,
   "widgetId": "ye0xbyiy06",
