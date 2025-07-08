@@ -1,57 +1,27 @@
-require('dotenv').config();
 const express = require('express');
 const { Pool } = require('pg');
-const app = express();
-const port = process.env.PORT || 3000;
+require('dotenv').config();
 
-// Conexão com o banco Supabase
+const app = express();
+
 const pool = new Pool({
   connectionString: process.env.DATABASE_URL,
+  ssl: { rejectUnauthorized: false },
 });
 
-// Função para extrair lista do formato {item1,item2}
-function parseLista(str) {
-  if (!str) return [];
-  const trimmed = str.trim();
-  if (trimmed.startsWith('{') && trimmed.endsWith('}')) {
-    return trimmed.substring(1, trimmed.length - 1).split(',');
-  }
-  return [];
-}
-
-// Rota principal
 app.get('/concursos', async (req, res) => {
-  const listaRaw = req.query.profissoes;
-  const lista = parseLista(listaRaw);
-
   try {
-    let result;
+    const { capacidades } = req.query;
+    const query = capacidades
+      ? `SELECT * FROM "Concursos" WHERE lista_de_vagas && ${capacidades}`
+      : 'SELECT * FROM "Concursos"';
 
-    if (lista.length > 0) {
-      const query = `
-        SELECT * FROM "Concursos"
-        WHERE lista_de_vagas && $1::text[]
-      `;
-      result = await pool.query(query, [lista]);
-    } else {
-      result = await pool.query('SELECT * FROM "Concursos"');
-    }
-
+    const result = await pool.query(query);
     res.json(result.rows);
-  } catch (err) {
-    console.error('Erro na consulta:', err);
-    res.status(500).json({ erro: 'Erro ao consultar o banco' });
+  } catch (error) {
+    console.error('Erro ao buscar concursos:', error.message);
+    res.status(500).json({ erro: 'Erro ao consultar concursos' });
   }
-});
-
-app.listen(port, () => {
-  console.log(`Servidor rodando na porta ${port}`);
 });
 
 module.exports = app;
-
-if (require.main === module) {
-  app.listen(3000, () => {
-    console.log("Servidor rodando na porta 3000");
-  });
-}
