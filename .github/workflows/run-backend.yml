@@ -1,32 +1,32 @@
-name: Rodar microserviço backend
+name: Testar Backend
 
-on: [push, pull_request]
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+env:
+  DATABASE_URL: ${{ secrets.DATABASE_URL }}
 
 jobs:
-  run-server:
+  build:
     runs-on: ubuntu-latest
 
-    defaults:
-      run:
-        working-directory: backend  # isso garante que tudo roda dentro da pasta /backend
-
     steps:
-    - name: Clonar o repositório
-      uses: actions/checkout@v4
+      - uses: actions/checkout@v3
 
-    - name: Configurar Node.js
-      uses: actions/setup-node@v4
-      with:
-        node-version: '20'
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
 
-    - name: Instalar dependências do backend
-      run: npm install
+      - name: Install dependencies
+        run: npm install
+        working-directory: backend
 
-    - name: Criar o .env com DATABASE_URL
-      run: |
-        echo "DATABASE_URL=${{ secrets.DATABASE_URL }}" > .env
-
-    - name: Rodar o servidor por 10 segundos (teste de conexão)
-      run: |
-        node index.js &
-        sleep 10
+      - name: Run tests
+        run: npm test
+        working-directory: backend
