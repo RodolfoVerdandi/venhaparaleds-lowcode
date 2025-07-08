@@ -4,7 +4,7 @@
   "main": "index.js",
   "scripts": {
   "start": "node index.js",
-  "test": "jest --coverage --coverageReporters=lcov"
+  "test": "jest --coverage --coverageDirectory=coverage --coverageReporters=lcov"
 },
   "dependencies": {
     "dotenv": "^16.4.5",
