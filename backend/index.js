@@ -47,3 +47,11 @@ app.get('/concursos', async (req, res) => {
 app.listen(port, () => {
   console.log(`Servidor rodando na porta ${port}`);
 });
+
+module.exports = app;
+
+if (require.main === module) {
+  app.listen(3000, () => {
+    console.log("Servidor rodando na porta 3000");
+  });
+}
