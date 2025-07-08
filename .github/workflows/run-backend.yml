@@ -1,0 +1,32 @@
+name: Rodar microserviço backend
+
+on: [push, pull_request]
+
+jobs:
+  run-server:
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        working-directory: backend
+
+    steps:
+    - name: Clonar repositório
+      uses: actions/checkout@v4
+
+    - name: Configurar Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20'
+
+    - name: Instalar dependências
+      run: npm install
+
+    - name: Criar arquivo .env
+      run: |
+        echo "DATABASE_URL=${{ secrets.DATABASE_URL }}" > .env
+
+    - name: Rodar o microserviço por 10 segundos
+      run: |
+        node index.js &
+        sleep 10
