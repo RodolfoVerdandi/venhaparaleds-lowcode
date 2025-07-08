@@ -8,10 +8,10 @@ jobs:
 
     defaults:
       run:
-        working-directory: backend
+        working-directory: backend  # isso garante que tudo roda dentro da pasta /backend
 
     steps:
-    - name: Clonar repositório
+    - name: Clonar o repositório
       uses: actions/checkout@v4
 
     - name: Configurar Node.js
@@ -19,14 +19,14 @@ jobs:
       with:
         node-version: '20'
 
-    - name: Instalar dependências
+    - name: Instalar dependências do backend
       run: npm install
 
-    - name: Criar arquivo .env
+    - name: Criar o .env com DATABASE_URL
       run: |
         echo "DATABASE_URL=${{ secrets.DATABASE_URL }}" > .env
 
-    - name: Rodar o microserviço por 10 segundos
+    - name: Rodar o servidor por 10 segundos (teste de conexão)
       run: |
         node index.js &
         sleep 10
