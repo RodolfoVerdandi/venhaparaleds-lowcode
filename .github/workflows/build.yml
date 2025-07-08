@@ -5,14 +5,26 @@ on:
       - main
   pull_request:
     types: [opened, synchronize, reopened]
+
 jobs:
   sonarqube:
     name: SonarQube
     runs-on: windows-latest
+    env:
+      SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
     steps:
       - uses: actions/checkout@v4
         with:
-          fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
+          fetch-depth: 0
+
+      - name: Instalar dependências
+        run: npm install
+        working-directory: backend
+
+      - name: Rodar testes com cobertura
+        run: npm test
+        working-directory: backend
+
       - name: Verificar cobertura
         run: ls -l backend/coverage
 
