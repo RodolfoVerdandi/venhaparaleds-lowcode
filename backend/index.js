@@ -1,9 +1,10 @@
-
 const express = require('express');
-const { getConcursos } = require('./src/controllers/concursoController');
-
 const app = express();
 
-app.get('/concursos', getConcursos);
+const concursosRoutes = require('./src/routes/concursosRoutes');
+
+app.use(express.json()); // se precisar de json no corpo das requisições
+
+app.use('/', concursosRoutes);
 
 module.exports = app;
