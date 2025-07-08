@@ -11,19 +11,23 @@ const pool = new Pool({
 
 app.get('/concursos', async (req, res) => {
   try {
-    const { capacidades } = req.query;
+    const { capacidades } = req.query; // espera uma string como 'dev,designer'
+
     let query = 'SELECT * FROM "Concursos"';
     let params = [];
-    
+
     if (capacidades) {
-      // Converte a string de capacidades em array e trata os valores
-      const capacidadesArray = capacidades.split(',').map(c => c.trim());
-      query += ' WHERE lista_de_vagas && $1::text[]';
+      // transforma string em array
+      const capacidadesArray = capacidades.split(',').map(p => p.trim());
+
+      query += ` WHERE EXISTS (SELECT 1 FROM unnest(lista_de_vagas) as vaga WHERE vaga = ANY($1))`;
       params.push(capacidadesArray);
+
     }
 
     const result = await pool.query(query, params);
     res.status(200).json(result.rows);
+
   } catch (error) {
     console.error('Erro ao buscar concursos:', error);
     res.status(500).json({ erro: 'Erro ao consultar concursos' });
