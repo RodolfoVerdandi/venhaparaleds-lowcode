@@ -1,0 +1,14 @@
+const { buscarConcursos } = require('../services/concursosService');
+
+async function getConcursos(req, res) {
+  try {
+    const { capacidades } = req.query;
+    const concursos = await buscarConcursos(capacidades);
+    res.status(200).json(concursos);
+  } catch (error) {
+    console.error('Erro ao buscar concursos:', error);
+    res.status(500).json({ erro: 'Erro ao consultar concursos' });
+  }
+}
+
+module.exports = { getConcursos };

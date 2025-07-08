@@ -1,9 +1,10 @@
-async function buscarConcursos(capacidades, pool) {
+const pool = require('../../db');
+
+async function findConcursosByCapacidades(capacidadesArray) {
   let query = 'SELECT * FROM "Concursos"';
   let params = [];
 
-  if (capacidades) {
-    const capacidadesArray = capacidades.split(',').map(p => p.trim());
+  if (capacidadesArray && capacidadesArray.length > 0) {
     query += ` WHERE EXISTS (SELECT 1 FROM unnest(lista_de_vagas) as vaga WHERE vaga = ANY($1))`;
     params.push(capacidadesArray);
   }
@@ -12,4 +13,4 @@ async function buscarConcursos(capacidades, pool) {
   return result.rows;
 }
 
-module.exports = { buscarConcursos };
+module.exports = { findConcursosByCapacidades };
