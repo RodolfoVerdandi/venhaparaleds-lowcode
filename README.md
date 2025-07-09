@@ -74,12 +74,39 @@ Via PostgresSQL.
 O usuário fornece um CPF de uma pessoa na caixa de input, e o sistema retorna quais concursos aquele CPF está apto a participar.
 (Comparação de profissões da pessoa com a lista dos tipos de vaga oferecidos pelo concurso)
 
+`venhaparaleds-lowcode/pages/Busca por concurso/jsobjects/Acao_de_botao_busca_por_codigo/Acao_de_botao_busca_por_codigo.js` é onde está o código que, ativado pelo botão, faz o encadeamento das requisições para que apareça as informações na tabela (GET "PROFISSAO_POR_CPF" -> GET "CONCURSOS_POR_PROFISSAO")
+
 ![Busca por cpf](https://imgur.com/TurtejC.png)
 
-### Tela: Busca por código de concurso:
+
+### Tela: Busca por código de concurso
 O usuário fornece o código do concurso, e o sistema retorna quais pessoas estão aptas a participar.
 
+`venhaparaleds-lowcode/pages/Busca por cpf/jsobjects/Acao_de_botao_busca_por_cpf/Acao_de_botao_busca_por_cpf.js` é o local do código que o botão dessa tela ativa, encadeando as requisições (GET "CONCURSO_POR_CÓDIGO" -> GET "CANDIDATOS_POR_TIPO_DE_VAGA").
+
 ![Busca por concurso](https://imgur.com/5hN8WGR.png)
+
+### Requisições
+
+#### 🔹 CONCURSO_POR_CODIGO
+##### Usado na tela: Busca por CPF
+Requisição: <pre>```https://znzfjumybhqviopjrntq.supabase.co/rest/v1/Concursos?select=*&codigo=eq.{{inputCodigo.text}}```</pre>
+###### {{inputCodigo.text}} é o valor no campo de input quando a requisição é chamada
+
+#### 🔹 CANDIDATOS_POR_TIPO_DE_VAGA
+##### Usado na tela: Busca por CPF
+Requisição:<pre>```https://znzfjumybhqviopjrntq.supabase.co/rest/v1/Candidatos?profissoes=ov.{{ '{' + (CONCURSO_POR_CODIGO.data[0]?.lista_de_vagas || []).join(',') + '}' }}&select=*```</pre>
+###### CONCURSO_POR_CODIGO.data[0]?.lista_de_vagas é o valor extraído da última chamada de CONCURSO_POR_CODIGO
+
+#### 🔹 PROFISSAO_POR_CPF
+##### Usado na tela: Busca por Concurso
+Requisição: <pre>```https://znzfjumybhqviopjrntq.supabase.co/rest/v1/Candidatos?select=profissoes&cpf=eq.{{InputCpf.text}}```</pre>
+###### {{inputCpf.text}} é o valor no campo de input quando a requisição é chamada
+
+#### 🔹 CONCURSOS_POR_PROFISSAO
+##### Usado na tela: Busca por Concurso
+Requisição: <pre>```https://znzfjumybhqviopjrntq.supabase.co/rest/v1/Concursos?lista_de_vagas=ov.{{ '{' + (PROFISSAO_POR_CPF.data[0]?.profissoes || []).join(',') + '}' }}&select=*```</pre>
+###### PROFISSAO_POR_CPF.data[0]?.profissoes é o valor extraído da última chamada de PROFISSAO_POR_CPF
 
 ### Appsmith: 
 
