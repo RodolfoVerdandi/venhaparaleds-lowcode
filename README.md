@@ -223,7 +223,7 @@ Agora você pode testar a API via curl ou pela própria url. </br>
 Ex: curl http://localhost:3000/concursos?capacidades=padeiro
 
 
-
+---
 
 ![](https://raw.githubusercontent.com/appsmithorg/appsmith/release/static/appsmith_logo_primary.png)
 
