@@ -12,7 +12,7 @@ const concursosRoutes = require('./src/routes/concursosRoutes');
 app.use(express.json());
 
 // Configura o uso das rotas importadas
-app.use('/concursos', concursosRoutes);
+app.use('/', concursosRoutes);
 
 // Exporta o app para que o arquivo server.js ou testes possam importar e rodar o servidor
 module.exports = app;
