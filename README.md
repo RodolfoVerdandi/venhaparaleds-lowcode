@@ -26,7 +26,7 @@ Esse projeto faz parte do **desafio Low Code - LEDS**. O objetivo da aplicação
 | Supertest       | Biblioteca para testar endpoints HTTP              |
 | Docker          | Containerização da aplicação                       |
 | SonarCloud      | Análise de qualidade e cobertura de código         |
-| GitHub Actions  | CI para testes e deploy automatizados              |
+| GitHub Actions  | CI para testes e ativar o sonar                    |
 
 
 
@@ -126,6 +126,48 @@ Como o Supabase já fornece uma API REST completa, todas as funcionalidades prin
 | **Service**    | `services/concursosService.js`       | Processa e trata os dados antes de enviá-los ao controller.       |
 | **Controller** | `controllers/concursosController.js` | Controla as requisições da rota e envia respostas para o cliente. |
 | **Route**      | `routes/concursosRoutes.js`          | Define a rota GET `/concursos` e conecta com o controller.        |
+
+### Testes Automatizados da API `/concursos`
+
+
+
+Utilizamos **Jest** junto com **Supertest** para validar o comportamento da rota `/concursos` e garantir a integridade da API.
+
+#### Testes de Integração / Funcionais
+
+Esses testes fazem requisições HTTP simuladas para a API e validam respostas completas:
+
+- **Teste básico de status e formato:**
+
+  - Verifica se a rota responde com status 200 e retorna um array JSON.
+  - Exemplo: consulta por `capacidades=marceneiro`
+
+- **Testes comportamentais por capacidade:**
+
+  - Valida se a API retorna concursos contendo a capacidade solicitada.
+  - Exemplos:  
+    - `capacidades=padeiro`  
+    - `capacidades=professor de matemática` 
+  - Também verifica retorno vazio para capacidade inexistente.
+ 
+### Como Rodar os Testes Localmente
+
+<pre># rodando o terminal na pasta backend 
+cd backend
+# instalar dependencias
+npm install
+#rodar testes
+npm test</pre>
+
+### Os testes também são rodados a cada Commit feito via Github Actions!
+#### Roda todos os testes que estiverem na pasta C:\Users\amara\Source\Repos\venhaparaleds-lowcode\backend\\\__tests__
+
+# SonarQube
+### Teste automatizados via GitHub Actions
+#### Foi usado a plataforma SonarCloud (do SonarQube) para os testes, a implementação é feita via .yml (.github\workflows) + sonar-project.properties (na raiz)
+#### Código não está passando no Quality Gate...
+Não consegui usar o Secrets do Github para declarar a variável DATABASE_URL com segurança (apesar de ter conseguido para o Token do SonarCloud). **Isso demonstra que o sonar está cumprindo seu papel**!
+
 
 
 ![](https://raw.githubusercontent.com/appsmithorg/appsmith/release/static/appsmith_logo_primary.png)
