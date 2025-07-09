@@ -82,10 +82,11 @@ O banco contém duas tabelas principais:
 #### *Transformado em único para não ocorrer conflitos na consulta. 
 No .txt passado no desafio, havia outra linha, com o mesmo codigo de concurso da primeira linha. Configurei o banco para que **"codigo"** seja **único em cada linha**.
 
-### Conexão do banco de dados:
+### Conexão do banco de dados (APENAS LEITURA):
 
 #### Appsmith
-O Supabase fornece uma API key que podemos usar no header para montar a solicitação corretamente no Appsmith 
+O Supabase fornece uma API key que podemos usar no header para montar a solicitação corretamente no Appsmith </br>
+
 
 #### API Backend
 Via PostgresSQL.
