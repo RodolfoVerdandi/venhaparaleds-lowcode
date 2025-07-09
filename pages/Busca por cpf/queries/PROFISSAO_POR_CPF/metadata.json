@@ -1,6 +1,6 @@
 {
-  "gitSyncId": "686b4a05fe5b092acdedb632_babc10c0-068e-4e4f-9422-bf9bbe9538fa",
-  "id": "Busca por cpf_GET_CONCURSOS_POR_PROFISSAO",
+  "gitSyncId": "686b4a05fe5b092acdedb632_b7490eeb-c8a3-4060-9c37-0114834fa582",
+  "id": "Busca por cpf_PROFISSAO_POR_CPF",
   "pluginId": "restapi-plugin",
   "pluginType": "API",
   "unpublishedAction": {
@@ -25,7 +25,7 @@
       "httpMethod": "GET",
       "httpVersion": "HTTP11",
       "paginationType": "NONE",
-      "path": "/rest/v1/Concursos",
+      "path": "/rest/v1/Candidatos",
       "pluginSpecifiedTemplates": [
         {
           "value": true
@@ -33,12 +33,12 @@
       ],
       "queryParameters": [
         {
-          "key": "lista_de_vagas",
-          "value": "ov.{{ '{' + (GET_PROFISSAO_POR_CPF.data[0]?.profissoes || []).join(',') + '}' }}"
+          "key": "select",
+          "value": "profissoes"
         },
         {
-          "key": "select",
-          "value": "*\n"
+          "key": "cpf",
+          "value": "eq.{{InputCpf.text}}"
         }
       ],
       "timeoutInMillisecond": 10000
@@ -54,13 +54,10 @@
     },
     "dynamicBindingPathList": [
       {
-        "key": "path"
-      },
-      {
-        "key": "queryParameters[0].value"
+        "key": "queryParameters[1].value"
       }
     ],
-    "name": "GET_CONCURSOS_POR_PROFISSAO",
+    "name": "PROFISSAO_POR_CPF",
     "pageId": "Busca por cpf",
     "runBehaviour": "ON_PAGE_LOAD",
     "userSetOnLoad": false

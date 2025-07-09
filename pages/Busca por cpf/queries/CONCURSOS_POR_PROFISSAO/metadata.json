@@ -1,6 +1,6 @@
 {
-  "gitSyncId": "686b4a05fe5b092acdedb632_e11d5992-f2dd-47d0-8039-8d95e747f7a0",
-  "id": "Busca por concurso_GET_CONCURSO_POR_CODIGO",
+  "gitSyncId": "686b4a05fe5b092acdedb632_babc10c0-068e-4e4f-9422-bf9bbe9538fa",
+  "id": "Busca por cpf_CONCURSOS_POR_PROFISSAO",
   "pluginId": "restapi-plugin",
   "pluginType": "API",
   "unpublishedAction": {
@@ -33,12 +33,12 @@
       ],
       "queryParameters": [
         {
-          "key": "select",
-          "value": "*"
+          "key": "lista_de_vagas",
+          "value": "ov.{{ '{' + (PROFISSAO_POR_CPF.data[0]?.profissoes || []).join(',') + '}' }}"
         },
         {
-          "key": "codigo",
-          "value": "eq.{{inputCodigo.text}}"
+          "key": "select",
+          "value": "*"
         }
       ],
       "timeoutInMillisecond": 10000
@@ -57,11 +57,11 @@
         "key": "path"
       },
       {
-        "key": "queryParameters[1].value"
+        "key": "queryParameters[0].value"
       }
     ],
-    "name": "GET_CONCURSO_POR_CODIGO",
-    "pageId": "Busca por concurso",
+    "name": "CONCURSOS_POR_PROFISSAO",
+    "pageId": "Busca por cpf",
     "runBehaviour": "ON_PAGE_LOAD",
     "userSetOnLoad": false
   }

@@ -43,7 +43,7 @@
   "responsiveBehavior": "fill",
   "rightColumn": 46,
   "shouldTruncate": false,
-  "text": "Capacidades do cpf buscado:\n{{(GET_PROFISSAO_POR_CPF.data[0]?.profissoes || []).join(',')}}",
+  "text": "Capacidades do cpf buscado:\n{{(PROFISSAO_POR_CPF.data[0]?.profissoes || []).join(',')}}",
   "textAlign": "LEFT",
   "textColor": "#231F20",
   "topRow": 16,

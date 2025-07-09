@@ -1,6 +1,6 @@
 {
-  "gitSyncId": "686b4a05fe5b092acdedb632_b7490eeb-c8a3-4060-9c37-0114834fa582",
-  "id": "Busca por cpf_GET_PROFISSAO_POR_CPF",
+  "gitSyncId": "686b4a05fe5b092acdedb632_e11d5992-f2dd-47d0-8039-8d95e747f7a0",
+  "id": "Busca por concurso_CONCURSO_POR_CODIGO",
   "pluginId": "restapi-plugin",
   "pluginType": "API",
   "unpublishedAction": {
@@ -25,7 +25,7 @@
       "httpMethod": "GET",
       "httpVersion": "HTTP11",
       "paginationType": "NONE",
-      "path": "/rest/v1/Candidatos",
+      "path": "/rest/v1/Concursos",
       "pluginSpecifiedTemplates": [
         {
           "value": true
@@ -34,11 +34,11 @@
       "queryParameters": [
         {
           "key": "select",
-          "value": "profissoes"
+          "value": "*"
         },
         {
-          "key": "cpf",
-          "value": "eq.{{InputCpf.text}}"
+          "key": "codigo",
+          "value": "eq.{{inputCodigo.text}}"
         }
       ],
       "timeoutInMillisecond": 10000
@@ -54,11 +54,14 @@
     },
     "dynamicBindingPathList": [
       {
+        "key": "path"
+      },
+      {
         "key": "queryParameters[1].value"
       }
     ],
-    "name": "GET_PROFISSAO_POR_CPF",
-    "pageId": "Busca por cpf",
+    "name": "CONCURSO_POR_CODIGO",
+    "pageId": "Busca por concurso",
     "runBehaviour": "ON_PAGE_LOAD",
     "userSetOnLoad": false
   }

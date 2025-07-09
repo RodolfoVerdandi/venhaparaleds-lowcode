@@ -34,7 +34,7 @@
       "queryParameters": [
         {
           "key": "profissoes",
-          "value": "ov.{{ '{' + (GET_CONCURSO_POR_CODIGO.data[0]?.lista_de_vagas || []).join(',') + '}' }}"
+          "value": "ov.{{ '{' + (CONCURSO_POR_CODIGO.data[0]?.lista_de_vagas || []).join(',') + '}' }}"
         },
         {
           "key": "select",
