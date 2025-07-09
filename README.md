@@ -1,5 +1,5 @@
-# Consulta-Concursos
-
+# Desafio Low Code - LEDS: Consulta-Concursos
+## Principais funcionalidades
 1. Listar os **órgãos, códigos e editais dos concursos públicos** que se encaixam no perfil do candidato, tomando como base o seu **CPF**; 
 2. Listar o **nome, data de nascimento e o CPF** dos candidatos que se encaixam no perfil do concurso tomando com base o **Código do Concurso** do concurso público;
 
@@ -24,6 +24,7 @@ Esse proejto faz parte do **desafio Low Code - LEDS**. O objetivo da aplicação
 | Tecnologia      | Descrição                                           |
 |-----------------|-----------------------------------------------------|
 | Node.js         | Ambiente de execução JavaScript no backend         |
+| PostgresSQL     | Banco de dados relacional utilizado via Supabase   |
 | Express.js      | Framework para construção de APIs REST             |
 | Jest            | Framework para testes unitários                    |
 | Supertest       | Biblioteca para testar endpoints HTTP              |
@@ -31,8 +32,48 @@ Esse proejto faz parte do **desafio Low Code - LEDS**. O objetivo da aplicação
 | SonarCloud      | Análise de qualidade e cobertura de código         |
 | GitHub Actions  | CI para testes e deploy automatizados              |
 
+# Supabase 
+🧱 Estrutura do Banco de Dados
+O banco contém duas tabelas principais:
 
-###
+## Candidatos
+| Campo             | Tipo        | Descrição                        |
+| ----------------- | ----------- | -------------------------------- |
+| id                | `int 8` (PK)| Identificador                    |
+| `cpf`             | `text`      | Código único do candidato        |
+| `nome`            | `text`      | Nome completo do candidato       |
+| `data_nascimento` | `date`      | Data de nascimento do candidato  |
+| `capacidades`     | `text[]`    | Lista de capacidades declaradas  |
+
+## Concurso
+| Campo         | Tipo        | Descrição                       |
+| ------------- | ----------- | ------------------------------- |
+| id            | `int 8` (PK)| Identificador                   |
+| `codigo`      | `text`      | Código único do concurso*       |
+| `orgao`       | `text`      | Órgão responsável pelo concurso |
+| `edital`      | `text`      | URL ou nome do edital           |
+| `habilidades` | `text[]`    | Lista de habilidades exigidas   |
+
+### *Transformado em único para não ocorrer conflitos na consulta. 
+
+## Conexão do banco de dados:
+
+### Appsmith
+O Supabase fornece uma API key que podemos usar no header para montar a solicitação corretamente no Appsmith 
+
+### API Backend
+Via PostgresSQL.
+
+
+# Funcionalidades
+
+# Tela: Busca por cpf
+O usuário fornece um CPF de uma pessoa na caixa de input, e o sistema retorna quais concursos aquele CPF está apto a participar.
+(Comparação de profissões da pessoa com a lista dos tipos de vaga oferecidos por aquele
+
+
+
+
 ![](https://raw.githubusercontent.com/appsmithorg/appsmith/release/static/appsmith_logo_primary.png)
 
 This app is built using Appsmith. Turn any datasource into an internal app in minutes. Appsmith lets you drag-and-drop components to build dashboards, write logic with JavaScript objects and connect to any API, database or GraphQL source.
