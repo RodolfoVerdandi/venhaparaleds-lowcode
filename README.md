@@ -68,7 +68,7 @@ O Supabase fornece uma API key que podemos usar no header para montar a solicita
 Via PostgresSQL.
 
 
-# Funcionalidades
+# Funcionalidades principais
 
 ### Tela: Busca por cpf
 O usuário fornece um CPF de uma pessoa na caixa de input, e o sistema retorna quais concursos aquele CPF está apto a participar.
@@ -108,8 +108,7 @@ Requisição: <pre>```https://znzfjumybhqviopjrntq.supabase.co/rest/v1/Candidato
 Requisição: <pre>```https://znzfjumybhqviopjrntq.supabase.co/rest/v1/Concursos?lista_de_vagas=ov.{{ '{' + (PROFISSAO_POR_CPF.data[0]?.profissoes || []).join(',') + '}' }}&select=*```</pre>
 ###### PROFISSAO_POR_CPF.data[0]?.profissoes é o valor extraído da última chamada de PROFISSAO_POR_CPF
 
-### Appsmith: 
-
+# Funcionalidades do backend em Node
 
 
 
