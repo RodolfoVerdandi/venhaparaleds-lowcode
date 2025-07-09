@@ -164,8 +164,8 @@ npm test</pre>
 
 # SonarQube
 ### Teste automatizados via GitHub Actions
-#### Foi usado a plataforma SonarCloud (do SonarQube) para os testes, a implementação é feita via .yml (.github\workflows) + sonar-project.properties (na raiz)
-#### Código não está passando no Quality Gate...
+#### Foi usado a plataforma SonarCloud (do SonarQube) para os testes, a configuração é feita via .yml (.github\workflows) + sonar-project.properties (na raiz)
+### Código não está passando no Quality Gate...
 Não consegui usar o Secrets do Github para declarar a variável DATABASE_URL com segurança (apesar de ter conseguido para o Token do SonarCloud). **Isso demonstra que o sonar está cumprindo seu papel**!
 
 
