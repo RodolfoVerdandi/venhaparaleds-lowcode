@@ -168,6 +168,21 @@ npm test</pre>
 ### Código não está passando no Quality Gate...
 Não consegui usar o Secrets do Github para declarar a variável DATABASE_URL com segurança (apesar de ter conseguido para o Token do SonarCloud). **Isso demonstra que o sonar está cumprindo seu papel**!
 
+# Docker
+### Como usar
+Pré requisito: ter o Docker no seu ambiente.
+<pre> 
+  #ir pro diretório do backend
+  cd backend
+  # buildar docker
+  docker build -t meu-app-node . 
+  # rodar
+  docker run -p 3000:3000 meu-backend
+</pre>
+Agora você pode testar a api via curl ou pela própria url.
+Ex: curl http://localhost:3000/concursos?capacidades=padeiro
+
+
 
 
 ![](https://raw.githubusercontent.com/appsmithorg/appsmith/release/static/appsmith_logo_primary.png)
