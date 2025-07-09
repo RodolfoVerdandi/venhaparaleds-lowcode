@@ -5,10 +5,6 @@
 
 ---
 
-# Sumário
-- [Sobre](#sobre)
-- [Tecnologias](#tecnologias)
- 
 # Sobre
 
 Esse projeto faz parte do **desafio Low Code - LEDS**. O objetivo da aplicação é facilitar consultas em um banco de dados, mais especificamente, facilitar o encontro de **"matchs" entre candidatos e concursos**. Isso é feito comparando as habilidades do candidato com a lista de vagas de cada concurso. A aplicação principal foi feita usando **AppSmith + Supabase**, no entanto, paralelamente, foi feita uma **API em Node.js** que também se comunica com o banco de dados.
@@ -110,6 +106,26 @@ Requisição: <pre>```https://znzfjumybhqviopjrntq.supabase.co/rest/v1/Concursos
 
 # Funcionalidades do backend em Node
 
+### A API em Node.js 
+##### A API foi construída com Express e exposta como um microserviço REST. Sua principal função é permitir a busca de concursos com base nas capacidades (profissões) de um candidato.
+#### Rota disponível
+| Método | Rota         | Parâmetro       | Descrição                                                                |
+| ------ | ------------ | --------------- | ------------------------------------------------------------------------ |
+| GET    | `/concursos` | `?capacidades=` | Retorna os concursos que exigem ao menos uma das capacidades informadas. |
+
+#### ❓ Por que a rota /concursos?capacidades= não foi utilizada diretamente no Appsmith?
+Embora essa rota esteja funcional via backend Express, optei por não integrá-la ao Appsmith por uma questão prática:
+a aplicação Node.js precisaria estar ativa e rodando continuamente (ex: via Docker ou servidor externo), o que não condiz com o foco principal do desafio, que é construir soluções de forma ágil e funcional com ferramentas Low Code. 
+Esta rota, na minha entrega, é uma demonstração do que podemos integrar ao Low Code, caso quisermos maior personalização do back-end, e de como os diferenciais poderiam ser aplicados em um projeto desse escopo. 
+
+Como o Supabase já fornece uma API REST completa, todas as funcionalidades principais puderam ser implementadas sem depender de serviços externos rodando continuamente. Po 
+##### Estrutura da aplicação backend 
+| Camada         | Arquivo                              | Responsabilidade                                                  |
+| -------------- | ------------------------------------ | ----------------------------------------------------------------- |
+| **Model**      | `models/concursosModel.js`           | Realiza as consultas diretamente no banco via `pool.query`.       |
+| **Service**    | `services/concursosService.js`       | Processa e trata os dados antes de enviá-los ao controller.       |
+| **Controller** | `controllers/concursosController.js` | Controla as requisições da rota e envia respostas para o cliente. |
+| **Route**      | `routes/concursosRoutes.js`          | Define a rota GET `/concursos` e conecta com o controller.        |
 
 
 ![](https://raw.githubusercontent.com/appsmithorg/appsmith/release/static/appsmith_logo_primary.png)
