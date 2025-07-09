@@ -4,6 +4,7 @@ export default {
 			// checa se o cpf está no formato certo
 			if(cpfToConsult.charAt(3)!="."&&cpfToConsult.charAt(6)!="."&&cpfToConsult.charAt(9)!="-"&&cpfToConsult.leght!=14){
 				showAlert("Cpf em formato inválido, use formato 123.456.789-00", "error");
+				await PROFISSAO_POR_CPF.run();
 				await CONCURSOS_POR_PROFISSAO.run();
 				return;
 			}
