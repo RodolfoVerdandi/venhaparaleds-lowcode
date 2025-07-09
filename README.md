@@ -1,4 +1,4 @@
-# Desafio Low Code - LEDS: Consulta-Concursos
+# Desafio Low Code - LEDS: Busca Candidatos-Concursos
 # Participante: Rodolfo Müller do Amaral
 ## Principais funcionalidades
 1. Listar os **órgãos, códigos e editais dos concursos públicos** que se encaixam no perfil do candidato, tomando como base o seu **CPF**; 
