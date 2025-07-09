@@ -3,6 +3,7 @@
 1. Listar os **órgãos, códigos e editais dos concursos públicos** que se encaixam no perfil do candidato, tomando como base o seu **CPF**; 
 2. Listar o **nome, data de nascimento e o CPF** dos candidatos que se encaixam no perfil do concurso tomando com base o **Código do Concurso** do concurso público;
 
+---
 
 # Acesso: 
 
@@ -13,6 +14,8 @@
 # Sobre
 
 Esse projeto faz parte do **desafio Low Code - LEDS**. O objetivo da aplicação é facilitar consultas em um banco de dados, mais especificamente, facilitar o encontro de **"matchs" entre candidatos e concursos**. Isso é feito comparando as habilidades do candidato com a lista de vagas de cada concurso. A aplicação principal foi feita usando **AppSmith + Supabase**, no entanto, paralelamente, foi feita uma **API em Node.js** que também se comunica com o banco de dados.
+
+---
 
 # Tecnologias
 ### Aplicação principal
@@ -34,31 +37,49 @@ Esse projeto faz parte do **desafio Low Code - LEDS**. O objetivo da aplicação
 | GitHub Actions  | CI para testes e ativar o sonar                    |
 
 
+---
 
 
 # Supabase 
 🧱 Estrutura do Banco de Dados
 O banco contém duas tabelas principais:
 
-### Candidatos
+## Candidatos
 | Campo             | Tipo        | Descrição                        |
 | ----------------- | ----------- | -------------------------------- |
 | id                | `int 8` (PK)| Identificador                    |
 | `cpf`             | `text`      | Código único do candidato        |
 | `nome`            | `text`      | Nome completo do candidato       |
 | `data_nascimento` | `date`      | Data de nascimento do candidato  |
-| `capacidades`     | `text[]`    | Lista de capacidades declaradas  |
+| `profissoes`     | `text[]`    | Lista de capacidades declaradas  |
 
-### Concurso
+#### Tabela candidatos:
+
+| id | nome           | data_nascimento | cpf            | profissoes                              |
+|----|----------------|-----------------|----------------|-----------------------------------------|
+| 13 | Lindsey Craft  | 1976-05-19      | 182.845.084-34 | ["carpinteiro", "professor de matemática"] |
+| 14 | Jackie Dawson  | 1970-08-14      | 311.667.973-47 | ["marceneiro", "assistente administrativo"] |
+| 15 | Cory Mendoza   | 1957-02-11      | 565.512.353-92 | ["carpinteiro", "marceneiro"]           |
+
+
+## Concurso
 | Campo         | Tipo        | Descrição                       |
 | ------------- | ----------- | ------------------------------- |
 | id            | `int 8` (PK)| Identificador                   |
 | `codigo`      | `text`      | Código único do concurso*       |
 | `orgao`       | `text`      | Órgão responsável pelo concurso |
 | `edital`      | `text`      | URL ou nome do edital           |
-| `habilidades` | `text[]`    | Lista de habilidades exigidas   |
+| `lista_de_vagas` | `text[]`    | Lista de habilidades exigidas   |
+
+#### Tabela concursos:
+| id | orgao  | edital  | codigo      | lista_de_vagas                          |
+|----|--------|---------|-------------|-----------------------------------------|
+| 1  | SEDU   | 9/2016  | 61828450843 | ["analista de sistemas", "marceneiro"]  |
+| 3  | SEJUS  | 17/2017 | 95655123539 | ["professor de matemática", "padeiro"]  |
+ 
 
 #### *Transformado em único para não ocorrer conflitos na consulta. 
+No .txt passado no desafio, havia outra linha, com o mesmo codigo de concurso da primeira linha. Configurei o banco para que **"codigo"** seja **único em cada linha**.
 
 ### Conexão do banco de dados:
 
@@ -67,6 +88,8 @@ O Supabase fornece uma API key que podemos usar no header para montar a solicita
 
 #### API Backend
 Via PostgresSQL.
+
+---
 
 
 # Funcionalidades principais
@@ -109,7 +132,11 @@ Requisição: <pre>```https://znzfjumybhqviopjrntq.supabase.co/rest/v1/Candidato
 Requisição: <pre>```https://znzfjumybhqviopjrntq.supabase.co/rest/v1/Concursos?lista_de_vagas=ov.{{ '{' + (PROFISSAO_POR_CPF.data[0]?.profissoes || []).join(',') + '}' }}&select=*```</pre>
 ###### PROFISSAO_POR_CPF.data[0]?.profissoes é o valor extraído da última chamada de PROFISSAO_POR_CPF
 
+---
+
+
 # Funcionalidades do backend em Node
+
 
 ### A API em Node.js 
 ##### A API foi construída com Express e exposta como um microserviço REST. Sua principal função é permitir a busca de concursos com base nas capacidades (profissões) de um candidato.
@@ -167,11 +194,17 @@ npm test</pre>
 ### Os testes também são rodados a cada Commit feito via Github Actions!
 #### Roda todos os testes que estiverem na pasta C:\Users\amara\Source\Repos\venhaparaleds-lowcode\backend\\\__tests__
 
+---
+
+
 # SonarQube
 ### Teste automatizados via GitHub Actions
 #### Foi usado a plataforma SonarCloud (do SonarQube) para os testes, a configuração é feita via .yml (.github\workflows) + sonar-project.properties (na raiz)
 ### Código não está passando no Quality Gate...
 Não consegui usar o Secrets do Github para declarar a variável DATABASE_URL com segurança (apesar de ter conseguido para o Token do SonarCloud). **Isso demonstra que o sonar está cumprindo seu papel**!
+
+---
+
 
 # Docker
 ### Como usar
