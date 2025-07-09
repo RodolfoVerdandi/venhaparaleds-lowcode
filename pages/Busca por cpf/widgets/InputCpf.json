@@ -12,11 +12,7 @@
     }
   ],
   "dynamicHeight": "FIXED",
-  "dynamicPropertyPathList": [
-    {
-      "key": "isRequired"
-    }
-  ],
+  "dynamicPropertyPathList": [],
   "dynamicTriggerPathList": [
     {
       "key": "onSubmit"
@@ -29,7 +25,7 @@
   "inputType": "TEXT",
   "isDisabled": false,
   "isLoading": false,
-  "isRequired": "",
+  "isRequired": false,
   "isVisible": true,
   "key": "kiwtpxwiiz",
   "label": "Digite Cpf do candidato",
