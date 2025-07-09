@@ -11,7 +11,7 @@
  
 # Sobre
 
-Esse proejto faz parte do **desafio Low Code - LEDS**. O objetivo da aplicação é facilitar consultas em um banco de dados, mais especificamente, facilitar o encontro de **"matchs" entre candidatos e concursos**. Isso é feito comparando as habilidades do candidato com a lista de vagas de cada concurso. A aplicação principal foi feita usando **AppSmith + Supabase**, no entanto, paralelamente, foi feita uma **API em Node.js** que também se comunica com o banco de dados.
+Esse projeto faz parte do **desafio Low Code - LEDS**. O objetivo da aplicação é facilitar consultas em um banco de dados, mais especificamente, facilitar o encontro de **"matchs" entre candidatos e concursos**. Isso é feito comparando as habilidades do candidato com a lista de vagas de cada concurso. A aplicação principal foi feita usando **AppSmith + Supabase**, no entanto, paralelamente, foi feita uma **API em Node.js** que também se comunica com o banco de dados.
 
 # Tecnologias
 ### Aplicação principal
@@ -101,7 +101,7 @@ Requisição:<pre>```https://znzfjumybhqviopjrntq.supabase.co/rest/v1/Candidatos
 #### 🔹 PROFISSAO_POR_CPF
 ##### Usado na tela: Busca por Concurso
 Requisição: <pre>```https://znzfjumybhqviopjrntq.supabase.co/rest/v1/Candidatos?select=profissoes&cpf=eq.{{InputCpf.text}}```</pre>
-###### {{inputCpf.text}} é o valor no campo de input quando a requisição é chamada
+###### {{InputCpf.text}} é o valor no campo de input quando a requisição é chamada
 
 #### 🔹 CONCURSOS_POR_PROFISSAO
 ##### Usado na tela: Busca por Concurso
