@@ -14,13 +14,13 @@
 Esse proejto faz parte do **desafio Low Code - LEDS**. O objetivo da aplicação é facilitar consultas em um banco de dados, mais especificamente, facilitar o encontro de **"matchs" entre candidatos e concursos**. Isso é feito comparando as habilidades do candidato com a lista de vagas de cada concurso. A aplicação principal foi feita usando **AppSmith + Supabase**, no entanto, paralelamente, foi feita uma **API em Node.js** que também se comunica com o banco de dados.
 
 # Tecnologias
-## Aplicação principal
+### Aplicação principal
 | Tecnologia | Descrição |
 |---|---|
 |**Supabase**| Foi usada a plataforma Supabase para hostear e configurar o banco. Além disso, ela já vem com chaves de acesso para APIs.|
 |**Appsmith**| Onde foi feito o front-end da aplicação, com requisições ao banco de dados dinâmicas e de consultas configuráveis.|
 
-## Projeto complementar 
+### Projeto complementar 
 | Tecnologia      | Descrição                                           |
 |-----------------|-----------------------------------------------------|
 | Node.js         | Ambiente de execução JavaScript no backend         |
@@ -32,11 +32,14 @@ Esse proejto faz parte do **desafio Low Code - LEDS**. O objetivo da aplicação
 | SonarCloud      | Análise de qualidade e cobertura de código         |
 | GitHub Actions  | CI para testes e deploy automatizados              |
 
+
+
+
 # Supabase 
 🧱 Estrutura do Banco de Dados
 O banco contém duas tabelas principais:
 
-## Candidatos
+### Candidatos
 | Campo             | Tipo        | Descrição                        |
 | ----------------- | ----------- | -------------------------------- |
 | id                | `int 8` (PK)| Identificador                    |
@@ -45,7 +48,7 @@ O banco contém duas tabelas principais:
 | `data_nascimento` | `date`      | Data de nascimento do candidato  |
 | `capacidades`     | `text[]`    | Lista de capacidades declaradas  |
 
-## Concurso
+### Concurso
 | Campo         | Tipo        | Descrição                       |
 | ------------- | ----------- | ------------------------------- |
 | id            | `int 8` (PK)| Identificador                   |
@@ -54,22 +57,28 @@ O banco contém duas tabelas principais:
 | `edital`      | `text`      | URL ou nome do edital           |
 | `habilidades` | `text[]`    | Lista de habilidades exigidas   |
 
-### *Transformado em único para não ocorrer conflitos na consulta. 
+#### *Transformado em único para não ocorrer conflitos na consulta. 
 
-## Conexão do banco de dados:
+### Conexão do banco de dados:
 
-### Appsmith
+#### Appsmith
 O Supabase fornece uma API key que podemos usar no header para montar a solicitação corretamente no Appsmith 
 
-### API Backend
+#### API Backend
 Via PostgresSQL.
 
 
 # Funcionalidades
 
-# Tela: Busca por cpf
+### Tela: Busca por cpf
 O usuário fornece um CPF de uma pessoa na caixa de input, e o sistema retorna quais concursos aquele CPF está apto a participar.
-(Comparação de profissões da pessoa com a lista dos tipos de vaga oferecidos por aquele
+(Comparação de profissões da pessoa com a lista dos tipos de vaga oferecidos pelo concurso)
+
+![tela](https://imgur.com/rwny6jg)
+
+### Tela: Busca por código de concurso:
+O usuário fornece o código do concurso, e o sistema retorna quais pessoas estão aptas a participar.
+
 
 
 
