@@ -3,6 +3,9 @@
 1. Listar os **órgãos, códigos e editais dos concursos públicos** que se encaixam no perfil do candidato, tomando como base o seu **CPF**; 
 2. Listar o **nome, data de nascimento e o CPF** dos candidatos que se encaixam no perfil do concurso tomando com base o **Código do Concurso** do concurso público;
 
+
+# Acesso: 
+
 ---
 
 # Sobre
@@ -179,7 +182,7 @@ Pré requisito: ter o Docker no seu ambiente.
   # rodar
   docker run -p 3000:3000 meu-backend
 </pre>
-Agora você pode testar a api via curl ou pela própria url.
+Agora você pode testar a API via curl ou pela própria url. </br>
 Ex: curl http://localhost:3000/concursos?capacidades=padeiro
 
 
