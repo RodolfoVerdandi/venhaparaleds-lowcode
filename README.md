@@ -74,11 +74,14 @@ Via PostgresSQL.
 O usuário fornece um CPF de uma pessoa na caixa de input, e o sistema retorna quais concursos aquele CPF está apto a participar.
 (Comparação de profissões da pessoa com a lista dos tipos de vaga oferecidos pelo concurso)
 
-![tela](https://imgur.com/a/8rO3Z72)
+![Busca por cpf](https://imgur.com/TurtejC.png)
 
 ### Tela: Busca por código de concurso:
 O usuário fornece o código do concurso, e o sistema retorna quais pessoas estão aptas a participar.
 
+![Busca por concurso](https://imgur.com/5hN8WGR.png)
+
+### Appsmith: 
 
 
 
