@@ -19,7 +19,7 @@ Esse projeto faz parte do **desafio Low Code - LEDS**. O objetivo da aplicação
 ---
 
 # Tecnologias
-### Aplicação principal
+### Aplicação principal 
 | Tecnologia | Descrição |
 |---|---|
 |**Supabase**| Foi usada a plataforma Supabase para hostear e configurar o banco. Além disso, ela já vem com chaves de acesso para APIs.|
